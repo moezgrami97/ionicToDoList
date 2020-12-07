@@ -1,0 +1,7 @@
+{
+  "name": "tp-gl-a",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

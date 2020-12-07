@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-title>
+      ToDo App
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="bg-img">
+    <h1>Today,</h1>
+    <h5> {{ currentDate }} </h5>
+
+    <ion-card *ngFor="let tsk of allTask">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-checkbox (ionChange)="changeCheckedState(tsk)" [(ngModel)]="tsk.checked" color="success"></ion-checkbox>
+          <ion-label>
+            <h2 *ngIf="!tsk.checked"> {{ tsk.text }} </h2>
+            <h2 *ngIf="tsk.checked" style="text-decoration: line-through;"> {{ tsk.text }} </h2>
+            <p> {{ tsk.date }} </p>
+
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="deleteTask(tsk.key)" color="danger">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card>
+
+
+
+    <ion-card *ngIf="addVar">
+      <ion-item>
+        <ion-input [(ngModel)]="newTask"></ion-input>
+        <ion-button (click)="addNewTask()">
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card>
+
+    <ion-grid>
+      <ion-row *ngIf="!addVar" class="ion-align-items-end">
+        <ion-col size="12">
+          <ion-button fill="solid" expand="block" color="dark" (click)="addFunction()">Ajouter</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="addVar">
+        <ion-col size="12">
+          <ion-button fill="solid" expand="block" color="dark" (click)="addFunction()">Annuler</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+
+</ion-content>
